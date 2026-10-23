@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Тренажёр запятых</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <button class="menu-btn" id="menuBtn" aria-label="Открыть правила" aria-expanded="false" aria-controls="drawer">
+    <span class="burger" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="menu-label">Правила</span>
+  </button>
+  <div class="brand">Тренажёр запятых</div>
+  <div class="score" id="score" title="Правильно решённых текстов">✓ 0</div>
+</header>
+
+<main class="wrap">
+  <div class="count-bar">
+    <div class="dd" id="countDd">
+      <button class="dd-btn" id="countBtn" aria-haspopup="listbox" aria-expanded="false" aria-controls="countList">
+        Предложения: <b id="countVal">3</b> <span class="chev" aria-hidden="true">▾</span>
+      </button>
+      <ul class="dd-list" id="countList" role="listbox" aria-label="Количество предложений"></ul>
+    </div>
+  </div>
+
+  <section class="card task">
+    <div class="card-head">
+      <h2>Задание</h2>
+      <button class="ghost" id="newBtn">Новый текст ↻</button>
+    </div>
+    <p class="hint">Перепиши текст в поле ниже и расставь все пропущенные запятые.</p>
+    <div class="task-text" id="taskText"></div>
+  </section>
+
+  <section class="card">
+    <div class="card-head">
+      <div class="mode seg" id="modeSeg" role="tablist" aria-label="Режим">
+        <span class="pill" aria-hidden="true"></span>
+        <button role="tab" data-mode="write" id="modeWrite">✎ Писать текстом</button>
+        <button role="tab" data-mode="click" id="modeClick">☝ Расставлять кликом</button>
+      </div>
+      <button class="ghost" id="fillBtn">Вставить текст задания</button>
+    </div>
+    <div id="writeBox">
+      <textarea id="answer" rows="7" placeholder="Пиши здесь…" spellcheck="false"></textarea>
+    </div>
+    <div id="clickBox" hidden>
+      <p class="hint">Нажимай на места между словами, чтобы поставить или убрать запятую.</p>
+      <div class="click-text" id="clickText"></div>
+    </div>
+    <div class="actions">
+      <button class="primary" id="checkBtn">Проверить</button>
+      <button class="ghost" id="showBtn">Показать ответ</button>
+    </div>
+  </section>
+
+  <section class="card result" id="result" hidden></section>
+</main>
+
+<dialog class="confirm" id="confirmDlg" aria-labelledby="confirmTitle">
+  <h3 id="confirmTitle">Показать ответ?</h3>
+  <p>Если вы подтвердите, то ответ не будет засчитан.</p>
+  <div class="confirm-actions">
+    <button class="ghost" id="confirmNo">Продолжить</button>
+    <button class="primary" id="confirmYes">Подтвердить</button>
+  </div>
+</dialog>
+
+<div class="overlay" id="overlay" hidden></div>
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer-head">
+    <h2>Правила постановки запятых</h2>
+    <button class="close" id="closeBtn" aria-label="Закрыть">✕</button>
+  </div>
+  <div class="drawer-body" id="rulesList"></div>
+</aside>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
