@@ -15,7 +15,21 @@
     <span class="burger" aria-hidden="true"><i></i><i></i><i></i></span>
     <span class="menu-label">Правила</span>
   </button>
-  <div class="brand">Тренажёр запятых</div>
+  <div class="brand brand-static" id="brandStatic">Тренажёр запятых</div>
+  <div class="dd brand-dd" id="topicDd">
+    <button class="brand brand-btn" id="brandBtn" aria-haspopup="listbox" aria-expanded="false" aria-controls="topicList">
+      <span id="brandText">Тренажёр запятых</span> <span class="chev" aria-hidden="true">▾</span>
+    </button>
+    <ul class="dd-list" id="topicList" role="listbox" aria-label="Тема">
+      <li style="--i:0"><button role="option" data-topic="commas">Запятые</button></li>
+      <li style="--i:1"><button role="option" data-topic="nn">Правописание Н и НН</button></li>
+    </ul>
+  </div>
+  <div class="seg topics" id="topicSeg" role="tablist" aria-label="Тема">
+    <span class="pill" aria-hidden="true"></span>
+    <button role="tab" data-topic="commas">Запятые</button>
+    <button role="tab" data-topic="nn">Н и НН</button>
+  </div>
   <div class="score" id="score" title="Правильно решённых текстов">✓ 0</div>
 </header>
 
@@ -34,7 +48,7 @@
       <h2>Задание</h2>
       <button class="ghost" id="newBtn">Новый текст ↻</button>
     </div>
-    <p class="hint">Перепиши текст в поле ниже и расставь все пропущенные запятые.</p>
+    <p class="hint" id="taskHint">Перепиши текст в поле ниже и расставь все пропущенные запятые.</p>
     <div class="task-text" id="taskText"></div>
   </section>
 
@@ -43,7 +57,7 @@
       <div class="mode seg" id="modeSeg" role="tablist" aria-label="Режим">
         <span class="pill" aria-hidden="true"></span>
         <button role="tab" data-mode="write" id="modeWrite">✎ Писать текстом</button>
-        <button role="tab" data-mode="click" id="modeClick">☝ Расставлять кликом</button>
+        <button role="tab" data-mode="click" id="modeClick">☝ <span id="clickLabel">Расставлять</span> кликом</button>
       </div>
       <button class="ghost" id="fillBtn">Вставить текст задания</button>
     </div>
@@ -51,7 +65,7 @@
       <textarea id="answer" rows="7" placeholder="Пиши здесь…" spellcheck="false"></textarea>
     </div>
     <div id="clickBox" hidden>
-      <p class="hint">Нажимай на места между словами, чтобы поставить или убрать запятую.</p>
+      <p class="hint" id="clickHint">Нажимай на места между словами, чтобы поставить или убрать запятую.</p>
       <div class="click-text" id="clickText"></div>
     </div>
     <div class="actions">
@@ -72,16 +86,22 @@
   </div>
 </dialog>
 
+<div class="slot-pop" id="slotPop" role="listbox" aria-label="Выбери н или нн" hidden>
+  <button role="option" data-pick="н">н</button>
+  <button role="option" data-pick="нн">нн</button>
+</div>
+
 <div class="overlay" id="overlay" hidden></div>
 <aside class="drawer" id="drawer" aria-hidden="true">
   <div class="drawer-head">
-    <h2>Правила постановки запятых</h2>
+    <h2 id="rulesTitle">Правила постановки запятых</h2>
     <button class="close" id="closeBtn" aria-label="Закрыть">✕</button>
   </div>
   <div class="drawer-body" id="rulesList"></div>
 </aside>
 
 <script src="data.js"></script>
+<script src="data-nn.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

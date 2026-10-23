@@ -66,7 +66,20 @@ button { font: inherit; cursor: pointer; }
 .burger i:nth-child(2) { top: 6px; }
 .burger i:nth-child(3) { top: 12px; }
 
+/* Выбор темы: вкладки на ПК, меню под названием на телефоне */
+.brand-static { flex: none; }
+.score { margin-left: auto; }
+.brand-dd { display: none; }
+.brand-btn {
+  display: inline-flex; align-items: center; gap: 6px; max-width: 100%;
+  background: none; border: 0; padding: 4px 0; color: var(--ink); text-align: left;
+}
+.brand-dd .dd-list { min-width: 240px; }
+.brand-dd .dd-list button { font-family: Inter, system-ui, sans-serif; }
+
 @media (max-width: 700px) {
+  .top .brand-static, .top .topics { display: none; }
+  .brand-dd { display: block; flex: 1; min-width: 0; }
   .top { padding: 10px 16px; }
   .menu-label { display: none; }
   .burger { display: block; }
@@ -200,6 +213,56 @@ textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
 .gap.g-miss { color: var(--bad); background: var(--bad-bg); box-shadow: inset 0 -2px 0 var(--bad); }
 .gap.g-miss::after { display: none; }
 .gap.g-miss::before { content: ","; opacity: .45; }
+
+/* Н и НН: пропуск в задании, кнопка-пропуск в режиме кликов, подсветка слов */
+.slot { color: var(--accent); font-weight: 700; padding: 0 1px; }
+.slot-btn {
+  display: inline-block; vertical-align: baseline;
+  min-width: 1.6em; height: 1.3em; margin: 0 1px; padding: 0 3px;
+  border: 0; border-radius: 5px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  box-shadow: inset 0 -2px 0 color-mix(in srgb, var(--accent) 45%, transparent);
+  color: var(--accent); font: inherit; font-weight: 700; line-height: 1.3em;
+}
+.slot-btn:hover { background: color-mix(in srgb, var(--accent) 22%, transparent); }
+.slot-btn:focus-visible { outline: 2px solid var(--accent); }
+.slot-btn.g-ok { color: var(--ok); background: var(--ok-bg); box-shadow: none; }
+.slot-btn.g-bad { color: var(--bad); background: var(--bad-bg); box-shadow: inset 0 -2px 0 var(--bad); }
+.slot-btn[aria-expanded="true"] { outline: 2px solid var(--accent); }
+/* Выбор «н / нн» под пропуском */
+.slot-pop {
+  position: absolute; z-index: 15; min-width: 68px;
+  display: flex; flex-direction: column; padding: 4px;
+  background: var(--paper); border: 1px solid var(--line); border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0,0,0,.16);
+  animation: pop-down .2s cubic-bezier(.2,.8,.3,1);
+}
+.slot-pop[hidden] { display: none; }
+.slot-pop::before {
+  content: ""; position: absolute; top: -6px; left: var(--ax, 50%);
+  width: 10px; height: 10px; margin-left: -6px;
+  background: var(--paper); border-left: 1px solid var(--line); border-top: 1px solid var(--line);
+  transform: rotate(45deg);
+}
+.slot-pop button {
+  position: relative;
+  background: none; border: 0; border-radius: 8px; padding: 6px 16px;
+  color: var(--ink); font-family: "PT Serif", serif; font-size: 20px; font-weight: 700;
+}
+.slot-pop button + button { margin-top: 5px; }
+.slot-pop button + button::before {
+  content: ""; position: absolute; left: 8px; right: 8px; top: -3px; height: 1px; background: var(--line);
+}
+.slot-pop button:hover, .slot-pop button:focus-visible { background: var(--bg); outline: none; }
+.slot-pop button[aria-selected="true"] { color: var(--accent); }
+@keyframes pop-down { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .slot-pop { animation: none; } }
+.w-ok { color: var(--ok); font-weight: 700; }
+.w-bad {
+  color: var(--bad); font-weight: 700;
+  background: var(--bad-bg); border-radius: 4px; padding: 0 3px;
+  border-bottom: 2px solid var(--bad);
+}
 
 /* Отсчёт до нового текста */
 .next-bar { height: 4px; background: var(--line); border-radius: 4px; overflow: hidden; margin: -4px 0 14px; }
